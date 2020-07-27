@@ -7,6 +7,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Scanner;
 
 public class PressureSlope {
 
@@ -32,8 +33,8 @@ public class PressureSlope {
                 } else {
                     wordArray = line.split("\t");
                     DataFormatter entry = new DataFormatter();
-                    entry.pressure = Float.valueOf(wordArray[2]);
-                    entry.humidity = Float.valueOf(wordArray[4]);
+                    entry.pressure = Float.parseFloat(wordArray[2]);
+                    entry.humidity = Float.parseFloat(wordArray[4]);
                     entry.date = dF.parse(wordArray[0]);
                     collectedData.add(entry);
                 }
@@ -96,6 +97,7 @@ public class PressureSlope {
         slopeCalculator.readData("data/Environmental_Data_Deep_Moor_2015.txt");
         System.out.println("Data successfully loaded.");
 
+        /* test cases
         String startDate = "2012/01/01 00:30:00";
         String endDate = "2012/01/01 02:30:00";
         System.out.println(slopeCalculator.calculateSlope(startDate, endDate));
@@ -103,5 +105,21 @@ public class PressureSlope {
         startDate = "2012/01/01 00:30:00";
         endDate = "2013/01/01 02:30:00";
         System.out.println(slopeCalculator.calculateSlope(startDate, endDate));
+        */
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("The following program uses data collected in Lake Pend Oreille, Idaho from between 2012 and 2015.");
+        System.out.println("When entering a date please use the following format: YYYY/MM/DD and HH:mm:ss");
+        System.out.print("Enter a start date: ");
+        String startDate = sc.next();
+        System.out.print("Enter a start time: ");
+        startDate = startDate + " " + sc.next();
+
+        System.out.print("Enter an end date: ");
+        String endDate = sc.next();
+        System.out.print("Enter an end time: ");
+        endDate = endDate + " " + sc.next();
+        System.out.println(slopeCalculator.calculateSlope(startDate, endDate));
+
     }
 }
