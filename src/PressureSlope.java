@@ -88,5 +88,20 @@ public class PressureSlope {
 
     public static void main(String[] args) {
 
+        PressureSlope slopeCalculator = new PressureSlope();
+        System.out.println("Loading data...");
+        slopeCalculator.readData("data/Environmental_Data_Deep_Moor_2012.txt");
+        slopeCalculator.readData("data/Environmental_Data_Deep_Moor_2013.txt");
+        slopeCalculator.readData("data/Environmental_Data_Deep_Moor_2014.txt");
+        slopeCalculator.readData("data/Environmental_Data_Deep_Moor_2015.txt");
+        System.out.println("Data successfully loaded.");
+
+        String startDate = "2012/01/01 00:30:00";
+        String endDate = "2012/01/01 02:30:00";
+        System.out.println(slopeCalculator.calculateSlope(startDate, endDate));
+
+        startDate = "2012/01/01 00:30:00";
+        endDate = "2013/01/01 02:30:00";
+        System.out.println(slopeCalculator.calculateSlope(startDate, endDate));
     }
 }
